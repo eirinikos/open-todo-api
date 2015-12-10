@@ -43,3 +43,8 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'bootstrap-sass'
+gem 'pry-rails'
+gem 'puma'
+gem 'rack-cors', :require => 'rack/cors'
+
