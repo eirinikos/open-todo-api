@@ -1,8 +1,8 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :password, :list_titles
+  attributes :id, :username, :password, :list_titles
 
-  def password
-    "#{object.name.downcase}_password"
+  def username
+    object.username
   end
 
   def list_titles
