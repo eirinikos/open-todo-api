@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :password, presence: true
 
-  def username # see UserSerializer
-    name
-  end
-
   def list_titles # see UserSerializer
     lists.map do |list|
       list.title
