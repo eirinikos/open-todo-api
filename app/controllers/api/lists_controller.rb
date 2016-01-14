@@ -35,6 +35,7 @@ class API::ListsController < ApiController
   # POST /lists.json
 
   def create
+    # user = 
     # list = user.lists.new(list_params)
 
     if list.save
