@@ -1,5 +1,6 @@
-class ListsController < ApplicationController
+class API::ListsController < ApiController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :authenticated?
 
   # GET /lists
   # GET /lists.json
@@ -32,17 +33,15 @@ class ListsController < ApplicationController
 
   # POST /lists
   # POST /lists.json
-  def create
-    @list = List.new(list_params)
 
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render json: @list, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
-      end
+  def create
+    # list = user.lists.new(list_params)
+
+    if list.save
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages },
+      status: :unprocessable_entity
     end
   end
 

@@ -2,7 +2,15 @@ Rails.application.routes.draw do
   resources :lists
 
   namespace :api, defaults: { format: :json } do # expect to receive JSON requests
-    resources :users
+    resources :users do
+      resources :lists
+    end
+
+    resources :lists, only: [] do
+      resources :items, only: [:create]
+    end
+
+    resources :items, only: [:destroy]
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
