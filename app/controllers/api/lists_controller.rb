@@ -2,6 +2,7 @@ class API::ListsController < ApiController
   before_action :authenticated?
 
   def create
+    # binding.pry
     list = current_user.lists.build(list_params)
     if list.save
       render json: list
