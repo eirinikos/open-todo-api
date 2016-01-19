@@ -4,4 +4,6 @@ class List < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :title, presence: true
+  validates :permissions, presence: true
+  validates :permissions, inclusion: { in: %w(private viewable open) }
 end

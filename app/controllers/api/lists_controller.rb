@@ -12,6 +12,18 @@ class API::ListsController < ApiController
     end
   end
 
+  def update
+    # list = current_user.lists.find(params[:id])
+    list = List.find(params[:id])
+    raise unless list.user == current_user
+    if list.update(list_params)
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages },
+      status: :unprocessable_entity
+    end
+  end
+
   def destroy
     begin
       list = current_user.lists.find(params[:id])
@@ -27,6 +39,6 @@ class API::ListsController < ApiController
   private
 
   def list_params
-    params.require(:list).permit(:title)
+    params.require(:list).permit(:title, :permissions)
   end
 end
