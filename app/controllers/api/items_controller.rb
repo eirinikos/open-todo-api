@@ -16,10 +16,10 @@ class API::ItemsController < ApiController
     # item = current_user.lists.find(params[:id]).items.find(params[:id])
     @item = Item.find(params[:id])
     raise unless @item.list.user == current_user
-    if list.update(list_params)
-      render json: list
+    if @item.update(item_params)
+      render json: @item
     else
-      render json: { errors: list.errors.full_messages },
+      render json: { errors: @item.errors.full_messages },
       status: :unprocessable_entity
     end
   end
@@ -40,6 +40,6 @@ class API::ItemsController < ApiController
   private
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :status)
   end
 end
